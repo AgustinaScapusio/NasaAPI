@@ -1,0 +1,28 @@
+﻿@model IndexViewModel
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Insert your birthday date and you will get your Astronomy Picture of the Day from NASA</p>
+    <form asp-action="Index"> 
+        <label asp-for="BirthDate">Birthday Date</label>
+        <input asp-for="BirthDate" />
+
+        <button type="submit" class="btn btn-primary">Click Here!</button>
+    </form>
+        @if (Model.PictureOfTheDay != null)
+        {
+            if (Model.PictureOfTheDay.MediaType == "image")
+            {
+                <div>
+                    <h2>@Model.PictureOfTheDay.Title</h2>
+                    <img src="@Model.PictureOfTheDay.Url" alt="@Model.PictureOfTheDay.Title" />
+                </div>
+            }
+            else
+            {
+                <div>
+                    <h2>@Model.PictureOfTheDay.Title</h2>
+                    <video src="@Model.PictureOfTheDay.Url"></video>
+                </div>
+            }
+        }
+</div>
